@@ -1,0 +1,39 @@
+/* groovylint-disable LineLength */
+pipeline {
+    agent any
+                 
+   environment { 
+            DOTCOMMIT_VERSION= '5.0.'
+           }
+        stages {
+            stage('Initial Notification') {
+                steps {
+                    //put webhook for your notification channel
+                    echo "Build ${env.JOB_NAME} branche ${env.BRANCH_NAME}  version $DOTCOMMIT_VERSION${env.BUILD_NUMBER}-${env.BRANCH_NAME}"
+                    //sh 'export PATH="$PATH:/root/.dotnet/tools"'
+                }
+            } 
+            stage('Restore') {
+                steps {                    
+                    sh 'dotnet restore DotCommit.Framework.sln'
+                }
+            }
+            stage('Build') {
+                steps {
+                    sh 'dotnet build DotCommit.Framework.sln'
+                }
+            }
+          
+            stage('Test') {
+                steps {
+                    sh 'dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover   DotCommit.Framework.sln'
+                    sh 'dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura   DotCommit.Framework.sln'
+               }
+            }
+            stage('CleanDown') {
+                steps {
+                    sh "rm -rf nupkgs"
+                }
+            }
+        }
+}

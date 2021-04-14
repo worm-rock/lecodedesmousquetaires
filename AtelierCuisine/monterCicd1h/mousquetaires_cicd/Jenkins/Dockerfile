@@ -25,3 +25,4 @@ RUN dotnet nuget add source http://nexus:8081/repository/nuget-hosted/
 
 
 RUN mkdir /app
+
