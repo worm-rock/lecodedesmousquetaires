@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:        
+    jenkins:
+        build:
+            dockerfile: ./Jenkins/Dockerfile
+            context: .
+        env_file: 
+            - env-file.md
+        volumes: 
+            - 'd:\mousquetaireJenkins_data:/bitnami/jenkins'
+            - 'd:\mousquetaireJenkins_conf:/var/jenkins_home'
+            
+        ports: 
+            - '8080:8080'
