@@ -15,19 +15,19 @@ pipeline {
             } 
             stage('Restore') {
                 steps {                    
-                    sh 'dotnet restore DotCommit.Framework.sln'
+                    sh 'dotnet restore /monterCicd1h/applicatif/HelloJenkins/HelloJenkins.sln'
                 }
             }
             stage('Build') {
                 steps {
-                    sh 'dotnet build DotCommit.Framework.sln'
+                    sh 'dotnet build AtelierCuisine/monterCicd1h/applicatif/HelloJenkins/HelloJenkins.sln'
                 }
             }
           
             stage('Test') {
                 steps {
-                    sh 'dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover   DotCommit.Framework.sln'
-                    sh 'dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura   DotCommit.Framework.sln'
+                    sh 'dotnet test  AtelierCuisine/monterCicd1h/applicatif/HelloJenkins/HelloJenkins.sln'
+                    sh 'dotnet test  AtelierCuisine/monterCicd1h/applicatif/HelloJenkins/HelloJenkins.sln'
                }
             }
             stage('CleanDown') {
