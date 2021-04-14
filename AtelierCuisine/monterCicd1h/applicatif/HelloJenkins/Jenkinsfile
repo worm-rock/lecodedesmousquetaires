@@ -3,13 +3,13 @@ pipeline {
     agent any
                  
    environment { 
-            DOTCOMMIT_VERSION= '5.0.'
+            HELLO_VERSION= '1.0.'
            }
         stages {
             stage('Initial Notification') {
                 steps {
                     //put webhook for your notification channel
-                    echo "Build ${env.JOB_NAME} branche ${env.BRANCH_NAME}  version $DOTCOMMIT_VERSION${env.BUILD_NUMBER}-${env.BRANCH_NAME}"
+                    echo "Build ${env.JOB_NAME} branche ${env.BRANCH_NAME}  version HELLO_VERSION{env.BUILD_NUMBER}-${env.BRANCH_NAME}"
                     //sh 'export PATH="$PATH:/root/.dotnet/tools"'
                 }
             } 
@@ -20,14 +20,14 @@ pipeline {
             }
             stage('Build') {
                 steps {
-                    sh 'dotnet build HelloJenkins/HelloJenkins.sln'
+                    sh 'dotnet build HelloJenkins.sln'
                 }
             }
           
             stage('Test') {
                 steps {
-                    sh 'dotnet test  HelloJenkins/HelloJenkins.sln'
-                    sh 'dotnet test  HelloJenkins/HelloJenkins.sln'
+                    sh 'dotnet test  HelloJenkins.sln'
+                    sh 'dotnet test  HelloJenkins.sln'
                }
             }
             stage('CleanDown') {
