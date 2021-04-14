@@ -9,7 +9,7 @@ pipeline {
             stage('Initial Notification') {
                 steps {
                     //put webhook for your notification channel
-                    echo "Build ${env.JOB_NAME} branche ${env.BRANCH_NAME}  version HELLO_VERSION{env.BUILD_NUMBER}-${env.BRANCH_NAME}"
+                    echo "Build ${env.JOB_NAME} branche ${env.BRANCH_NAME}  version $HELLO_VERSION{env.BUILD_NUMBER}-${env.BRANCH_NAME}"
                     //sh 'export PATH="$PATH:/root/.dotnet/tools"'
                 }
             } 
@@ -36,5 +36,5 @@ pipeline {
                 }
             }
         }
-    }
+    
 }
